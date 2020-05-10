@@ -83,6 +83,17 @@ public struct Delay
         }
     }
 
+    public float Elapsed01
+    {
+        get
+        {
+            if (nextDelay == 0.0f)
+                return 1f;
+
+            return Mathf.Clamp01(Elapsed / nextDelay);
+        }
+    }
+
     public void Next()
     {
         nextDelay = Random.Range(Min, Max);
