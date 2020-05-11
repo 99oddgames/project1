@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class MathUtils
 {
+    private static Camera cachedCamera;
+
     //http://allenchou.net/2015/04/game-math-numeric-springing-examples/
     public static void Spring(ref float x, ref float v, float xt, float zeta, float omega, float deltaTime)
     {
@@ -46,6 +48,17 @@ public class MathUtils
     {
         float sqm = (point - target).sqrMagnitude;
         return sqm <= range * range;
+    }
+
+    public static Vector3 ScreenToWorldPosition(Vector3 screenPoint)
+    {
+        if (!cachedCamera)
+        {
+            cachedCamera = Camera.main;
+        }
+
+        var result = cachedCamera.ScreenToWorldPoint(screenPoint);
+        return result;
     }
 }
 
