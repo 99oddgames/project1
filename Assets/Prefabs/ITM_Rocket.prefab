@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3100178127639743733}
   - component: {fileID: 8376949576126348041}
   m_Layer: 0
-  m_Name: Rocket
+  m_Name: ITM_Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561f3a4f7fec4ab43a12c34ef635b56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Force: 24
-  FuelSeconds: 0.1
+  Force: 8
+  FuelSeconds: 3
   ForcePoint: {fileID: 3077738895586069542}
 --- !u!50 &3100178127639743733
 Rigidbody2D:

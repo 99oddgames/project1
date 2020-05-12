@@ -24,7 +24,7 @@ public class Manipulator : MonoBehaviour
     }
 
     private State state;
-
+    
     private void Awake()
     {
         state = new State()
@@ -47,9 +47,11 @@ public class Manipulator : MonoBehaviour
         }
         else if(state.CurrentState == EState.Spawning)
         {
-            Vector3 desiredDirection = (state.SpawnOrigin - input.ManipulatorPositionWorld).normalized;
+            Time.timeScale = Mathf.MoveTowards(Time.timeScale, 0.01f, Time.unscaledDeltaTime * 6f);
 
-            float maxRotationDelta = PlayerParams.SpawnRotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+            var desiredDirection = (state.SpawnOrigin - input.ManipulatorPositionWorld).normalized;
+
+            var maxRotationDelta = PlayerParams.SpawnRotationSpeed * Mathf.Deg2Rad * Time.unscaledDeltaTime;
             var newDirection = Vector3.RotateTowards(state.ItemInstance.transform.right, desiredDirection, maxRotationDelta, 0f);
 
             state.ItemInstance.transform.right = newDirection;
@@ -61,6 +63,8 @@ public class Manipulator : MonoBehaviour
         }
         else if(state.CurrentState == EState.Release)
         {
+            Time.timeScale = 1f;
+
             state.ItemInstance.OnManipulatorRelease();
             state.ItemInstance = null;
             state.CurrentState = EState.Idle;
